@@ -1,0 +1,27 @@
+body{
+    background-color: #7e7926;
+    color : #eae8e1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.price-card {
+    background-color:rgb(62, 67, 65);
+    padding:20px;
+    margin: 15px;
+    border: 4px solid #bbdd33;
+    border-radius: 50px;
+    text-align: center;
+    width: 50%;
+    margin:auto;
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;
+    font-weight:lighter
+}
+
+.prices-container {
+    display: flex;
+    gap: 5%;
+    margin: 20px;;
+}
