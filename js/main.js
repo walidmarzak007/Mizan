@@ -1,6 +1,7 @@
 import { getPrices } from "./api.js";
 import { renderPriceCards } from "./ui.js";
-import { calculateSilverPrice } from "./calculator.js";
+import { calculateSilverPrice, calculateVariation } from "./calculator.js";
+import { getPreviousPrices } from "./storage.js";
 
 try{
 const data = await getPrices();
@@ -19,6 +20,7 @@ const metals = [
     currency: "MAD"
     }
 ];
+const previousMetals = getPreviousPrices();
 renderPriceCards(metals, formattedDate);
 console.log(data)
 }
