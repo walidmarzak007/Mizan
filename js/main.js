@@ -1,7 +1,7 @@
 import { getPrices } from "./api.js";
 import { renderPriceCards } from "./ui.js";
 import { calculateSilverPrice, calculateVariation } from "./calculator.js";
-import { getPreviousPrices } from "./storage.js";
+import { getPreviousPrices, savePrices } from "./storage.js";
 
 try{
 const data = await getPrices();
@@ -18,9 +18,26 @@ const metals = [
     name: "Prix de l'argent",
     price: calculatedSilverPrice,
     currency: "MAD"
-    }
-];
+    }];
+
 const previousMetals = getPreviousPrices();
+
+if (previousMetals){
+metals.forEach((metal) => {
+const previousMetal = previousMetals.find((item)=> item.name === metal.name);
+if (previousMetal){
+const variation = calculateVariation(metal.price, previousMetal.price);
+
+console.log ("current price:",metal.price);
+console.log ("previous price:", previousMetal.price);
+console.log("variation:", variation);
+
+metal.variation = variation;
+}
+});
+}
+savePrices(metals);
+
 renderPriceCards(metals, formattedDate);
 console.log(data)
 }
