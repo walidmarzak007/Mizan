@@ -25,3 +25,15 @@ h1{
     gap: 5%;
     margin: 20px;;
 }
+
+.variation-up{
+    color: green;
+}
+
+.variation-down{
+    color: red;
+}
+
+.variation-neutral{
+    color: gray;
+}

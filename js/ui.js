@@ -19,17 +19,29 @@ export function renderPriceCards(metals, formattedDate) {
 
          card.append(price);
 
-         if (metal.variation){
-         const variationText = document.createElement("p");
+      if (metal.variation) {
+          const variationText = document.createElement("p");
 
-         variationText.textContent = `${metal.variation.percentage.toFixed(2)} %`;
+      if (metal.variation.difference > 0) {
+         variationText.classList.add("variation-up");
+         variationText.textContent = `↑ +${metal.variation.difference.toFixed(2)} ${metal.currency} (+${metal.variation.percentage.toFixed(2)}%)`;
+
+     } else if (metal.variation.difference < 0) {
+         variationText.classList.add("variation-down");
+         variationText.textContent = `↓ ${metal.variation.difference.toFixed(2)} ${metal.currency} (${metal.variation.percentage.toFixed(2)}%)`;
+
+     } else {
+         variationText.classList.add("variation-neutral");
+         variationText.textContent = `→ 0.00 ${metal.currency} (0.00%)`;
+     }
+
          card.append(variationText);
 
-         }else{
-         const variationText = document.createElement("p");
-         variationText.textContent = "variation indisponible";
+     } else {
+          const variationText = document.createElement("p");
+         variationText.textContent = "Variation indisponible";
          card.append(variationText);
-         }
+     }
 
          const date = document.createElement("p");
          date.textContent = `Dernière mise à jour : ${formattedDate}`;
