@@ -1,9 +1,9 @@
-export function savePrices(metals){
-localStorage.setItem("previousPrices", JSON.stringify(metals));
+export function savePrices(metals, currency){
+localStorage.setItem(`previousPrices-${currency}`, JSON.stringify(metals));
 }
 
-export function getPreviousPrices (){
-const savedPrices = localStorage.getItem("previousPrices");
+export function getPreviousPrices (currency){
+const savedPrices = localStorage.getItem(`previousPrices-${currency}`);
 
     if (savedPrices){
         return JSON.parse(savedPrices);

@@ -14,3 +14,7 @@ export function calculateVariation(currentPrice, previousPrice){
         percentage: percentage
     }
 }
+
+export function convertHistoricalPrice(price, exchangeRate) {
+    return (price * exchangeRate) / 31.1035;
+}
