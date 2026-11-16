@@ -37,3 +37,23 @@ h1{
 .variation-neutral{
     color: gray;
 }
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 250px;
+    overflow-x: auto;
+    padding: 20px 10px;
+}
+
+.chart-bar {
+    min-width: 55px;
+    background-color: #A9472D;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 11px;
+    text-align: center;
+}

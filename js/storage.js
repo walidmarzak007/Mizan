@@ -1,12 +1,27 @@
-export function savePrices(metals, currency){
-localStorage.setItem(`previousPrices-${currency}`, JSON.stringify(metals));
+
+export function savePrices(metals, currency) {
+    const today = new Date().toLocaleDateString("en-CA");
+    const key = `dailyReference-${currency}-${today}`;
+
+    // Keep the first prices saved today.
+    if (localStorage.getItem(key)) {
+        return;
+    }
+
+    const pricesToSave = metals.map((metal) => ({
+        name: metal.name,
+        price: metal.price,
+        currency: metal.currency
+    }));
+
+    localStorage.setItem(key, JSON.stringify(pricesToSave));
 }
 
-export function getPreviousPrices (currency){
-const savedPrices = localStorage.getItem(`previousPrices-${currency}`);
+export function getPreviousPrices(currency) {
+    const today = new Date().toLocaleDateString("en-CA");
+    const key = `dailyReference-${currency}-${today}`;
 
-    if (savedPrices){
-        return JSON.parse(savedPrices);
-    }
-    return null;
+    const savedPrices = localStorage.getItem(key);
+
+    return savedPrices ? JSON.parse(savedPrices) : null;
 }

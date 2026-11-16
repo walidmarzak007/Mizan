@@ -22,7 +22,27 @@
             <section class="prices-container" id="prices-container">
             <p>Chargement des prix...</p>
              </section>
-             
+
+             <section class="history-section">
+    <h2>Historique des prix</h2>
+
+    <label for="metal-select">Choisir un métal :</label>
+    <select id="metal-select">
+        <option value="xau">Or</option>
+        <option value="silver">Argent</option>
+    </select>
+
+    <label for="history-period">Période :</label>
+    <select id="history-period">
+        <option value="7d">7 jours</option>
+        <option value="1mo">30 jours</option>
+    </select>
+
+            <div id="history-chart">
+            <p>Choisissez un métal et une période.</p>
+            </div>
+            </section>
+            
             <button id="refresh-button">Actualiser les prix</button>
             <p id="status-message">Prêt</p>
         </main>

@@ -1,53 +1,50 @@
+
 const pricesContainer = document.getElementById("prices-container");
 
 export function renderPriceCards(metals, formattedDate) {
     pricesContainer.textContent = "";
 
     metals.forEach((metal) => {
-         const card = document.createElement("section");
-         card.classList.add("price-card");
+        const card = document.createElement("section");
+        card.classList.add("price-card");
 
-         const title = document.createElement("h2");
-         title.textContent = metal.name;
+        const title = document.createElement("h2");
+        title.textContent = metal.name;
+        card.append(title);
 
-         card.append(title);
+        const price = document.createElement("p");
+        price.classList.add("price-value");
+        price.textContent = `${metal.price.toFixed(2)} ${metal.currency}`;
+        card.append(price);
 
-         const price = document.createElement("p");
-         price.classList.add("price-value");
+        const variationText = document.createElement("p");
 
-         price.textContent = `${metal.price.toFixed(2)} ${metal.currency}`;
+        if (metal.variation) {
+            if (metal.variation.difference > 0) {
+                variationText.classList.add("variation-up");
+                variationText.textContent =
+                    `↑ +${metal.variation.difference.toFixed(4)} ${metal.currency} (+${metal.variation.percentage.toFixed(2)}%)`;
 
-         card.append(price);
+            } else if (metal.variation.difference < 0) {
+                variationText.classList.add("variation-down");
+                variationText.textContent =
+                    `↓ ${metal.variation.difference.toFixed(4)} ${metal.currency} (${metal.variation.percentage.toFixed(2)}%)`;
 
-      if (metal.variation) {
-          const variationText = document.createElement("p");
+            } else {
+                variationText.classList.add("variation-neutral");
+                variationText.textContent =
+                    `→ 0.00 ${metal.currency} (0.00%)`;
+            }
+        } else {
+            variationText.textContent = "Variation indisponible";
+        }
 
-      if (metal.variation.difference > 0) {
-         variationText.classList.add("variation-up");
-         variationText.textContent = `↑ +${metal.variation.difference.toFixed(2)} ${metal.currency} (+${metal.variation.percentage.toFixed(2)}%)`;
+        card.append(variationText);
 
-     } else if (metal.variation.difference < 0) {
-         variationText.classList.add("variation-down");
-         variationText.textContent = `↓ ${metal.variation.difference.toFixed(2)} ${metal.currency} (${metal.variation.percentage.toFixed(2)}%)`;
+        const date = document.createElement("p");
+        date.textContent = `Dernière mise à jour : ${formattedDate}`;
+        card.append(date);
 
-     } else {
-         variationText.classList.add("variation-neutral");
-         variationText.textContent = `→ 0.00 ${metal.currency} (0.00%)`;
-     }
-
-         card.append(variationText);
-
-     } else {
-          const variationText = document.createElement("p");
-         variationText.textContent = "Variation indisponible";
-         card.append(variationText);
-     }
-
-         const date = document.createElement("p");
-         date.textContent = `Dernière mise à jour : ${formattedDate}`;
-
-         card.append(date);
-
-         pricesContainer.append(card);
-});
+        pricesContainer.append(card);
+    });
 }
