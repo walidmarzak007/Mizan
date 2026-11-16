@@ -8,7 +8,7 @@ Its purpose is to display current gold and silver prices in MAD per gram and hel
 
 - HTML
 - CSS
-- JavaScript 
+- JavaScript
 - Fetch API
 - LocalStorage
 
@@ -22,6 +22,7 @@ It provides gold and silver prices, exchange rates, and update timestamps.
 
 ## Project Structure
 
+```text
 mizan/
 ├── index.html
 ├── css/
@@ -33,32 +34,37 @@ mizan/
     ├── charts.js
     ├── storage.js
     └── ui.js
+```
 
 ## Implemented Features
 
 - Fetch gold and silver prices from the API.
-- Convert silver prices from USD per ounce to MAD per gram.
+- Convert silver prices from USD per ounce to price per gram.
 - Display prices in dynamically generated cards.
 - Show the last update date and time.
-- Save and retrieve prices using LocalStorage.
 - Calculate price differences and percentage changes.
+- Display price variations with green, red, and neutral indicators.
+- Save daily reference prices using LocalStorage.
+- Allow currency selection (MAD, USD, EUR).
+- Save the selected currency in LocalStorage.
+- Display historical price charts for gold and silver.
+- Select historical periods (7 days or 30 days).
 - Handle API errors using try/catch.
 
 ## Upcoming Features
 
-- Display price variations in the cards.
-- Add currency selection (MAD, USD, EUR).
-- Display historical price charts.
 - Build a jewellery price estimator.
 - Improve loading and error messages.
+- Add request logging.
 
 ## Technical Choices
 
 - Vanilla JavaScript without frameworks.
 - ES modules to organize the code.
-- Separate API, calculation, storage, and UI logic.
+- Separate API, calculation, storage, chart, and UI logic.
 - Use textContent to safely display API data.
-- Use LocalStorage to save previous prices.
+- Use LocalStorage to save daily reference prices and currency preferences.
+- Generate historical charts dynamically without external chart libraries.
 
 ---
 
